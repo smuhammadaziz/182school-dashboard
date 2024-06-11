@@ -4,7 +4,34 @@ import AddNews from "./pages/add/news";
 import GetOneNews from "./pages/one/news";
 import AddAdmins from "./pages/add/admins";
 
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 function App() {
+  // const navigateTo = useNavigate();
+  // useEffect(() => {
+  //   // Check if token exists in local storage
+  //   const token = localStorage.getItem("TOKEN");
+
+  //   if (!token) {
+  //     navigateTo("/auth/sign-in");
+  //   }
+  // }, []);
+
+  // const restrictedRoutes = [
+  //   "/dashboard/admin",
+  //   "/dashboard/student",
+  //   "/dashboard/teacher",
+  // ];
+
+  // useEffect(() => {
+  //   const currentPath = window.location.pathname;
+  //   const token = localStorage.getItem("TOKEN");
+
+  //   if (!token && restrictedRoutes.includes(currentPath)) {
+  //     navigateTo("/");
+  //   }
+  // }, []);
   return (
     <Routes>
       <Route path="/dashboard/*" element={<Dashboard />} />
