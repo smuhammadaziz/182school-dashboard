@@ -6,6 +6,9 @@ import AddAdmins from "./pages/add/admins";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import AddStudents from "./pages/add/student";
+import AddIntros from "./pages/add/intro";
+import GetOneintro from "./pages/one/side";
 
 function App() {
   // const navigateTo = useNavigate();
@@ -42,10 +45,15 @@ function App() {
       {/* ========================================================= */}
       <Route path="/dashboard/news/add" element={<AddNews />} />
       <Route path="/dashboard/admins/add" element={<AddAdmins />} />
+      <Route path="/dashboard/students/add" element={<AddStudents />} />
+      <Route path="/dashboard/intro/add" element={<AddIntros />} />
 
       {/* //Getting one */}
       {/* ========================================================= */}
-      <Route path="/dashboard/news/1" element={<GetOneNews />} />
+      <Route path="/dashboard/news/:blog_id" element={<GetOneNews />} />
+      <Route path="/dashboard/admins/:blog_id" element={<GetOneNews />} />
+      <Route path="/dashboard/students/:student_id" element={<GetOneNews />} />
+      <Route path="/dashboard/intro/:side_id" element={<GetOneintro />} />
     </Routes>
   );
 }

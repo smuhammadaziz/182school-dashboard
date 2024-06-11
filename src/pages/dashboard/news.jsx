@@ -39,7 +39,35 @@ const news = [
   },
 ];
 
+import backurl from "@/links";
+import { useState, useEffect } from "react";
+import moment from "moment";
+
 function NewsPage() {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch(`${backurl}/api/get/all/blog`, {
+          method: "get",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch blogs");
+        }
+
+        const data = await response.json();
+        // console.log(data);
+
+        const reversedData = data.reverse();
+        setBlogs(reversedData);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
   return (
     <div>
       <div>
@@ -54,26 +82,28 @@ function NewsPage() {
       </div>
 
       <div className="mt-10 flex grid mt-10 auto-cols-auto grid-cols-3">
-        {news.map((e) => {
-          return (
-            <div className="my-5 mx-5 px-10 py-5 bg-white " key={e.id}>
-              <img
-                src={e.img}
-                alt=" img"
-                className="w-100 rounded mb-6"
-                width="500"
-              />
-              <h2 className="text-2xl mb-2">{e.title}</h2>
-              <h4>{e.date}</h4>
-              <NavLink
-                to={`/dashboard/news/1`}
-                className="bg-blue-700 hover:bg-blue-500 text-white py-2 px-6 mt-5 inline-block rounded"
-              >
-                более
-              </NavLink>
-            </div>
-          );
-        })}
+        {blogs
+          ? blogs.map((e) => {
+              return (
+                <div className="my-5 mx-5 px-10 py-5 bg-white " key={e.blog_id}>
+                  <img
+                    src={`${backurl}upload/${e.img}`}
+                    alt=" img"
+                    className="w-100 rounded mb-6"
+                    width="500"
+                  />
+                  <h2 className="text-2xl mb-2">{e.title}</h2>
+                  <h4>{moment(e.created_at).format("lll")}</h4>
+                  <NavLink
+                    to={`/dashboard/news/${e.blog_id}`}
+                    className="bg-blue-700 hover:bg-blue-500 text-white py-2 px-6 mt-5 inline-block rounded"
+                  >
+                    более
+                  </NavLink>
+                </div>
+              );
+            })
+          : "null"}
       </div>
     </div>
   );

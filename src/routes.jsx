@@ -13,6 +13,9 @@ import { SignIn, SignUp } from "@/pages/auth";
 import NewsPage from "./pages/dashboard/news";
 import AddNews from "./pages/add/news";
 import AdminsPage from "./pages/dashboard/admins";
+import StudentsAdmin from "./pages/dashboard/student";
+import IntrosAdmin from "./pages/dashboard/intro";
+import ContactsAdmin from "./pages/dashboard/contact";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -44,31 +47,19 @@ export const routes = [
         icon: <ListBulletIcon {...icon} />,
         name: "Активные студенты",
         path: "/students",
-        element: <Home />,
+        element: <StudentsAdmin />,
       },
       {
         icon: <PhotoIcon {...icon} />,
         name: "Фотографии",
         path: "/intro",
-        element: <Home />,
+        element: <IntrosAdmin />,
       },
       {
         icon: <ChatBubbleOvalLeftEllipsisIcon {...icon} />,
         name: "Cписок контактов",
         path: "/contact",
-        element: <Home />,
-      },
-    ],
-  },
-  {
-    title: "auth pages",
-    layout: "auth",
-    pages: [
-      {
-        icon: <ServerStackIcon {...icon} />,
-        name: "sign in",
-        path: "/sign-in",
-        element: <SignIn />,
+        element: <ContactsAdmin />,
       },
     ],
   },

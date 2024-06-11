@@ -7,25 +7,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 
-function GetOneNews() {
+function GetOneintro() {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
-  const { blog_id } = useParams();
+  const { side_id } = useParams();
   const token = localStorage.getItem("TOKEN");
 
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const response = await fetch(`${backurl}/api/get/blog/${blog_id}`);
+        const response = await fetch(
+          `${backurl}/api/admin/get/side/${side_id}`,
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch blog");
         }
         const data = await response.json();
 
-        // console.log(data);
-        setBlog(data.Data);
+        console.log(data);
+        setBlog(data.sides);
       } catch (error) {
         console.error("Error fetching blog:", error);
         toast.error("Failed to fetch blog", {
@@ -36,12 +38,12 @@ function GetOneNews() {
       }
     }
     fetchBlog();
-  }, [blog_id]);
+  }, []);
 
   async function deleteItem() {
     try {
       const response = await fetch(
-        `${backurl}/api/admin/delete/blog/${blog_id}`,
+        `${backurl}/api/admin/delete/side/${side_id}`,
         {
           method: "DELETE",
           headers: {
@@ -56,7 +58,7 @@ function GetOneNews() {
       toast.success("Successfully deleted blog", {
         position: "top-right",
       });
-      navigate("/dashboard/news");
+      navigate("/dashboard/intro");
     } catch (error) {
       console.error("Error deleting blog:", error);
       toast.error("Failed to delete blog", {
@@ -90,10 +92,10 @@ function GetOneNews() {
 
       <div className="w-2/3">
         <img
-          src={`${backurl}upload/${blog.img}`}
+          src={`${backurl}upload/${blog.photo}`}
           alt=""
           width={400}
-          className="w-50 h-full object-contain "
+          className="w-full h-full object-contain "
         />
         <h2 className="text-2xl my-5">{blog.title}</h2>
         <p>{blog.descr}</p>
@@ -102,7 +104,7 @@ function GetOneNews() {
         <div className="mt-10">
           {" "}
           <NavLink
-            to="/dashboard/news"
+            to="/dashboard/intro"
             className="bg-orange-600 py-3 px-10 text-white hover:bg-orange-400 rounded"
           >
             ⬅️ Назад
@@ -120,4 +122,4 @@ function GetOneNews() {
   );
 }
 
-export default GetOneNews;
+export default GetOneintro;

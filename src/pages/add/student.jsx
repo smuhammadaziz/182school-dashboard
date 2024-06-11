@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import backurl from "@/links";
 
-function AddAdmins() {
+function AddStudents() {
   const [name, setName] = useState("");
   const [lname, setLName] = useState("");
   const [description, setDescription] = useState("");
@@ -60,7 +60,7 @@ function AddAdmins() {
 
   return (
     <div className="news bg-slate-400 block p-10">
-      <h2 className="text-3xl">Добавить новые администрация</h2>
+      <h2 className="text-3xl">Добавить нового студента</h2>
       <form action="" className="w-1/2 mt-10" onSubmit={handleSubmit}>
         <div className="my-5">
           <label htmlFor="" className="me-5">
@@ -129,4 +129,4 @@ function AddAdmins() {
   );
 }
 
-export default AddAdmins;
+export default AddStudents;

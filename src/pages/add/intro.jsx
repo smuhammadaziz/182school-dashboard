@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
 import backurl from "@/links";
 
-function AddAdmins() {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+function AddIntros() {
   const [name, setName] = useState("");
-  const [lname, setLName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
 
@@ -15,7 +16,6 @@ function AddAdmins() {
   const handleCancel = () => {
     // Clear all form data
     setName("");
-    setLName("");
     setDescription("");
     setPhoto(null);
   };
@@ -25,16 +25,16 @@ function AddAdmins() {
 
     // Create a form data object
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("l_name", lname);
-    formData.append("role", "admin");
-    formData.append("descr", description);
+    formData.append("title", name);
+    formData.append("descr", "default");
     if (photo) {
       formData.append("image", photo);
     }
 
+    // console.log(formData);
+
     try {
-      const response = await fetch(`${backurl}api/admin/add/teacher`, {
+      const response = await fetch(`${backurl}api/admin/add/side`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -42,10 +42,8 @@ function AddAdmins() {
         body: formData,
       });
 
-      console.log(response);
-
       if (response.ok) {
-        toast.success("Admin successfully added", {
+        toast.success("Side successfully added", {
           position: "top-right",
         });
         handleCancel();
@@ -60,45 +58,22 @@ function AddAdmins() {
 
   return (
     <div className="news bg-slate-400 block p-10">
-      <h2 className="text-3xl">Добавить новые администрация</h2>
+      <ToastContainer></ToastContainer>
+      <h2 className="text-3xl">Добавить новые картина</h2>
       <form action="" className="w-1/2 mt-10" onSubmit={handleSubmit}>
         <div className="my-5">
           <label htmlFor="" className="me-5">
-            имя
+            Заголовок
           </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Имя"
+            placeholder="Заголовок"
             className="py-4 bg-indigo-100 block ps-5 pe-5 mt-2 outline-none w-full"
           />
         </div>
-        <div className="my-5">
-          <label htmlFor="" className="me-5">
-            фамилия
-          </label>
-          <input
-            type="text"
-            value={lname}
-            onChange={(e) => setLName(e.target.value)}
-            placeholder="Фамилия"
-            className="py-4 bg-indigo-100 block ps-5 pe-5 mt-2 outline-none w-full"
-          />
-        </div>
-        <div className="my-5 flex flex-col">
-          <label htmlFor="" className="me-5">
-            Oписание
-          </label>
-          <textarea
-            name=""
-            id=""
-            rows="10"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-4/4 mt-5 bg-indigo-100 p-5"
-          ></textarea>
-        </div>
+
         <div className="my-5">
           <label htmlFor="" className="me-5">
             Загрузка изображения
@@ -111,7 +86,7 @@ function AddAdmins() {
           />
           <div className="flex">
             <NavLink
-              to="/dashboard/admins"
+              to="/dashboard/intro"
               className="bg-orange-700 hover:bg-orange-500 text-white py-3 px-12 text-lg rounded mt-10 mx-auto block"
             >
               Назад
@@ -129,4 +104,4 @@ function AddAdmins() {
   );
 }
 
-export default AddAdmins;
+export default AddIntros;
