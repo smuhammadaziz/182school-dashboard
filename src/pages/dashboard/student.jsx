@@ -71,10 +71,10 @@ function NewsPage() {
   return (
     <div>
       <div>
-        <h2 className="text-2xl">Список всех новостей</h2>
+        <h2 className="text-2xl">Список всех студент</h2>
 
         <NavLink
-          to="/dashboard/news/add"
+          to="/dashboard/students/add"
           className="bg-green-700 py-3 px-12 text-lg text-white mt-6 inline-block rounded hover:bg-green-600"
         >
           Добавить
@@ -85,7 +85,7 @@ function NewsPage() {
         {blogs
           ? blogs.map((e) => {
               return (
-                <div className="my-5 mx-5 px-10 py-5 bg-white " key={e.blog_id}>
+                <div className="my-5 mx-5 px-10 py-5 bg-white " key={e.id}>
                   <img
                     src={`${backurl}upload/${e.image}`}
                     alt=" img"

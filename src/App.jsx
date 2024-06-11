@@ -10,6 +10,7 @@ import AddStudents from "./pages/add/student";
 import AddIntros from "./pages/add/intro";
 import GetOneintro from "./pages/one/side";
 import GetOneStudent from "./pages/one/student";
+import GetOneAdmin from "./pages/one/admin";
 
 function App() {
   // const navigateTo = useNavigate();
@@ -40,7 +41,7 @@ function App() {
     <Routes>
       <Route path="/dashboard/*" element={<Dashboard />} />
       <Route path="/auth/*" element={<Auth />} />
-      <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+      <Route path="*" element={<Navigate to="/auth/sign-in" replace />} />
 
       {/* //Adding */}
       {/* ========================================================= */}
@@ -52,7 +53,7 @@ function App() {
       {/* //Getting one */}
       {/* ========================================================= */}
       <Route path="/dashboard/news/:blog_id" element={<GetOneNews />} />
-      <Route path="/dashboard/admins/:blog_id" element={<GetOneNews />} />
+      <Route path="/dashboard/admins/:id" element={<GetOneAdmin />} />
       <Route path="/dashboard/students/:id" element={<GetOneStudent />} />
       <Route path="/dashboard/intro/:side_id" element={<GetOneintro />} />
     </Routes>

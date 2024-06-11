@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 import backurl from "@/links";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddAdmins() {
   const [name, setName] = useState("");
@@ -42,7 +44,7 @@ function AddAdmins() {
         body: formData,
       });
 
-      console.log(response);
+      // console.log(response);
 
       if (response.ok) {
         toast.success("Admin successfully added", {
@@ -60,6 +62,7 @@ function AddAdmins() {
 
   return (
     <div className="news bg-slate-400 block p-10">
+      <ToastContainer></ToastContainer>
       <h2 className="text-3xl">Добавить новые администрация</h2>
       <form action="" className="w-1/2 mt-10" onSubmit={handleSubmit}>
         <div className="my-5">

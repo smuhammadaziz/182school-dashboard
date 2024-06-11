@@ -34,6 +34,11 @@ export function DashboardNavbar() {
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
 
+  function handleSignOut() {
+    localStorage.removeItem("token"); // Replace 'token' with the actual key used in local storage
+    // You can also add any additional sign-out logic here if necessary
+  }
+
   return (
     <Navbar
       color={fixedNavbar ? "white" : "transparent"}
@@ -82,7 +87,7 @@ export function DashboardNavbar() {
           >
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
-          <Link to="/auth/sign-in">
+          <Link to="/auth/sign-in" onClick={handleSignOut}>
             <Button
               variant="text"
               color="blue-gray"
