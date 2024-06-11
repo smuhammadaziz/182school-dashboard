@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import AddStudents from "./pages/add/student";
 import AddIntros from "./pages/add/intro";
 import GetOneintro from "./pages/one/side";
+import GetOneStudent from "./pages/one/student";
 
 function App() {
   // const navigateTo = useNavigate();
@@ -52,7 +53,7 @@ function App() {
       {/* ========================================================= */}
       <Route path="/dashboard/news/:blog_id" element={<GetOneNews />} />
       <Route path="/dashboard/admins/:blog_id" element={<GetOneNews />} />
-      <Route path="/dashboard/students/:student_id" element={<GetOneNews />} />
+      <Route path="/dashboard/students/:id" element={<GetOneStudent />} />
       <Route path="/dashboard/intro/:side_id" element={<GetOneintro />} />
     </Routes>
   );
