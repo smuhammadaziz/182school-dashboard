@@ -32,7 +32,7 @@ function AddStudents() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("l_name", lname);
-    formData.append("clas", lname);
+    formData.append("clas", sinf);
     formData.append("teacher_fulln", "Default");
     formData.append("descr", description);
     if (photo) {
