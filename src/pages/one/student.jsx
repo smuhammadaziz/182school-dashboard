@@ -95,7 +95,7 @@ function GetOneStudent() {
         <h2 className="text-2xl my-5">
           {blog.name} {blog.l_name}
         </h2>
-        <h2 className="text-2xl my-5">{blog.class}</h2>
+        <h2 className="text-2xl my-5">{blog.sinf}</h2>
         <p>{blog.descr}</p>
         <p className="my-5 text-lg">{moment(blog.created_at).format("lll")}</p>
 
