@@ -24,7 +24,7 @@ function GetOneStudent() {
         }
         const data = await response.json();
 
-        //    console.log(data);
+        console.log(data);
         setBlog(data.Student);
       } catch (error) {
         console.error("Error fetching blog:", error);
@@ -95,7 +95,7 @@ function GetOneStudent() {
         <h2 className="text-2xl my-5">
           {blog.name} {blog.l_name}
         </h2>
-        <h2 className="text-2xl my-5">{blog.clas}</h2>
+        <h2 className="text-2xl my-5">{blog.class}</h2>
         <p>{blog.descr}</p>
         <p className="my-5 text-lg">{moment(blog.created_at).format("lll")}</p>
 
